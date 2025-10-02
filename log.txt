@@ -26,3 +26,7 @@ Added Django password hashing, which saves a hashed password in PostgreSQL, rath
 Changed the signup URL.
 
 Added submit_login() function.
+
+adem_2311: 9:12 AM 02/10/2025
+
+submit_signup() now checks for the email's existents in the database before inserting.
