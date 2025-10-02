@@ -4,12 +4,12 @@ import json
 from .models import LoginAttempt
 from django.http import JsonResponse
 from django.contrib.auth.models import User
-from django.contrib.auth.hashers import make_password
 from django.http import HttpResponse
 from django.http import FileResponse, Http404
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
+from django.contrib.auth.hashers import make_password
 
 '''
 def signup_view(request):
@@ -84,6 +84,10 @@ def submit_signup(request):
         
         if not email or not password:
             return JsonResponse({'success': False, 'error': 'Mising email or password'}, status=400)
+        
+        # 🔎 Check if email already exists
+        if LoginAttempt.objects.filter(email=email).exists():
+            return JsonResponse({'success': False, 'error': 'User already exists'}, status=400)
         
         # Save into my PostgreSQL LoginAttempt table
         attempt = LoginAttempt.objects.create(
