@@ -1,15 +1,14 @@
 import sys
-import lib.CLI
+from lib import arg
 
 
 
 if __name__ == "__main__":
 	print("Welcome to Behunt")
 	try:
-		cli = CLI.CLI()
-		parser = cli.Arguments()
+		arg = arg.CLI()
+		parser = arg.Arguments()
 		if sys.argv[1] in ('-h', '--help'):
-			print("Usage: python3 Behunt.py [options]")
 			print("Options:")
 			print(parser.format_help())
 			sys.exit(0)

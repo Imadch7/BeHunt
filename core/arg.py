@@ -7,7 +7,8 @@ class CLI:
 
 
     def Arguments(self):
-        parser = argparse.ArgumentParser(description="BeHunt is a web servers vulnerability scanner.",add_help=False,formatter_class=argparse.RawTextHelpFormatter)
+        parser = argparse.ArgumentParser(add_help=False,formatter_class=argparse.RawTextHelpFormatter,usage="python3 Behunt.py [options]")
+        
         parser.add_argument("-h","--host",help="Target HOST/URL",action="store",required=True)
 
         parser.add_argument("-u","--url",help="Target HOST/URL",action="store",required=True)
@@ -22,7 +23,7 @@ class CLI:
 
         parser.add_argument("-ipv6","--ipv6",help="IPv6 Only",action="store_true")
 
-        parser.add_argument("-mutate","--mutate",help="mutate options :\n 1. Guess for password file names.\n " \
+        parser.add_argument("-mutate","--mutate",help="mutate options :\n 1. Guess for password file names.\n" \
                             "2.Enumerate user names via Apache (/~user type requests).\n" \
                             "3.Enumerate user names via cgiwrap (/cgi-bin/cgiwrap/~user type requests)",choices=['1','2','3'],default='1')
 
