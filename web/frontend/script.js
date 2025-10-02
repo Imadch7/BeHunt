@@ -180,7 +180,22 @@ class NeumorphismLoginForm {
             errorElement.textContent = '';
         }, 300);
     }
-
+/*
+    getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookie[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+*/
     async handleSubmit(e) {
         e.preventDefault();
 
@@ -192,10 +207,11 @@ class NeumorphismLoginForm {
         this.setLoading(true);
 
         try {
-            fetch('/submit/', {
+            fetch('/submit_signup/', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    //'X-CSRFToken': this.getCookie('csrftoken')
                 },
                 body: JSON.stringify({
                     email: this.emailInput.value,
@@ -203,15 +219,26 @@ class NeumorphismLoginForm {
                 })
             })
             .then(response => response.json())
-            .then(data => console.log(data))
-            .catch(error => console.error(error));
+            .then(data => {
+                if (data.success) {
+                    console.log('Signup success: ', data);
+                    this.showNeumorphicSuccess();
+                }
+                else {
+                    console.error('Signup failed: ', data.error);
+                    this.showError('password', data.error);
+                }
+            })
+            .catch(error => console.error('Request error: ', error));
 
             // Show neumorphic success
             this.showNeumorphicSuccess();
 
-        } catch (error) {
-            this.showError('password', 'Login failed. Please try again.');
-        } finally {
+        }
+        catch (error) {
+            this.showError('password', 'Login failed. An error occured. Please try again.');
+        }
+        finally {
             this.setLoading(false);
         }
     }

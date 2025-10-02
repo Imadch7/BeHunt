@@ -1,11 +1,16 @@
-from django.views.decorators.csrf import csrf_exempt
-from django.http import JsonResponse
-from .models import LoginAttempt
-from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.models import User
-from django.shortcuts import render, redirect
-from django.http import HttpResponse
+import os
 import json
+
+from .models import LoginAttempt
+from django.http import JsonResponse
+from django.contrib.auth.models import User
+from django.contrib.auth.hashers import make_password
+from django.http import HttpResponse
+from django.http import FileResponse, Http404
+from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth import authenticate, login, logout
+from django.shortcuts import render, redirect
+
 '''
 def signup_view(request):
     if request.method == "POST":
@@ -31,8 +36,6 @@ def logout_view(request):
     logout(request)
     return HttpResponse("Logged out!")
 '''
-import os
-from django.http import FileResponse, Http404
 
 def home(request):
     # Path to the static index.html
@@ -43,24 +46,52 @@ def home(request):
     except FileNotFoundError:
         raise Http404('index.html not found')
 
-
+'''
 @csrf_exempt
 def submit_login(request):
-    if request.method == 'POST':
-        try:
-            data = json.loads(request.body.decode('utf-8'))
-            email = data.get('email')
-            password = data.get('password')
-            
-            if not email or not password:
-                return JsonResponse({'success': False, 'error': 'Missing email or password'}, status=400)
-            
-            # This line inserts the data into the database
-            LoginAttempt.objects.create(email=email, password=password)
-            
-            return JsonResponse({'success': True})
+    if request.method != 'POST':
+        return JsonResponse({'success': False, 'message': 'Incorrect HTTP method used'}, status=405)
+    
+    try:
+        data = json.loads(request.body.decode('utf-8'))
+        email = data.get('email')
+        password = data.get('password')
         
-        except Exception as e:
-            return JsonResponse({'success': False, 'error': str(e)}, status=400)
+        if not email or not password:
+            return JsonResponse({'success': False, 'error': 'Missing email or password'}, status=400)
         
-    return JsonResponse({'success': False, 'error': 'Invalid request'}, status=405)
+        # Try to authenticate the user
+        user = authenticate(request, username=email, password=password)
+        if user is not None:
+            # logs user into Django session
+            login(request, user)
+            return JsonResponse({"success": True, "message": "Login successful"})
+        else:
+            return JsonResponse({"success": False, "error": "Invalid credentials"}, status=401)
+                
+    except Exception as e:
+        return JsonResponse({'success': False, 'error': str(e)}, status=400)
+'''
+@csrf_exempt
+def submit_signup(request):
+    if request.method != 'POST':
+        return JsonResponse({'success': False, 'error': 'Invalid HTTP request made'}, status=405)
+    
+    try:
+        data = json.loads(request.body.decode('utf-8'))
+        email = data.get('email')
+        password = data.get('password')
+        
+        if not email or not password:
+            return JsonResponse({'success': False, 'error': 'Mising email or password'}, status=400)
+        
+        # Save into my PostgreSQL LoginAttempt table
+        attempt = LoginAttempt.objects.create(
+            email=email,
+            password=make_password(password) # 🔒 hash the password
+        )
+        
+        return JsonResponse({'success': True, 'message': 'Signup successful', 'id': attempt.id}, status=200)
+    
+    except Exception as e:
+        return JsonResponse({'success': False, 'error': str(e)}, status=400)
