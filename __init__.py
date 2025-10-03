@@ -1,5 +1,6 @@
 import sys
-from lib import arg
+from core import arg
+from core import spider
 
 
 
@@ -22,3 +23,8 @@ if __name__ == "__main__":
 	except Exception as e:
 		print(f"An error occurred: {e}")
 		sys.exit(1)
+	finally:
+		spi = spider.spider()
+		URLM = "https://courspython.com/apprendre-numpy.html"
+		spi.crawl(URLM)
+		spi.save_TAGS(URLM)
