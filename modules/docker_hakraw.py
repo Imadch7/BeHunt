@@ -9,7 +9,7 @@ class Url_ENUM:
         self.COMMAND1 = "sudo docker build -t hakluke/hakrawler ."
         self.COMMAND2 = f"echo {URLM} | "
         self.COMMAND3 = f"sudo docker run --rm -i hakluke/hakrawler >> {self.purl.base_url(URLM)}.txt "
-        os.chdir("hakrawler")
+        os.chdir("HR")
     
     def run(self):
         try:
