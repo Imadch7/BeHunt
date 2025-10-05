@@ -35,18 +35,7 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return HttpResponse("Logged out!")
-'''
 
-def home(request):
-    # Path to the static index.html
-    base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-    index_path = os.path.join(base_dir, 'frontend', 'index.html')
-    try:
-        return FileResponse(open(index_path, 'rb'), content_type='text/html')
-    except FileNotFoundError:
-        raise Http404('index.html not found')
-
-'''
 @csrf_exempt
 def submit_login(request):
     if request.method != 'POST':
@@ -72,6 +61,16 @@ def submit_login(request):
     except Exception as e:
         return JsonResponse({'success': False, 'error': str(e)}, status=400)
 '''
+
+def home(request):
+    # Path to the static index.html
+    base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    index_path = os.path.join(base_dir, 'frontend', 'index.html')
+    try:
+        return FileResponse(open(index_path, 'rb'), content_type='text/html')
+    except FileNotFoundError:
+        raise Http404('index.html not found')
+    
 @csrf_exempt
 def submit_signup(request):
     if request.method != 'POST':

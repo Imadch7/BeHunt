@@ -180,7 +180,8 @@ class NeumorphismLoginForm {
             errorElement.textContent = '';
         }, 300);
     }
-/*
+
+    // Use this when removing @csrf_exempt
     getCookie(name) {
         let cookieValue = null;
         if (document.cookie && document.cookie !== '') {
@@ -195,7 +196,7 @@ class NeumorphismLoginForm {
         }
         return cookieValue;
     }
-*/
+
     async handleSubmit(e) {
         e.preventDefault();
 
