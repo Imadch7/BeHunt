@@ -21,6 +21,8 @@ class Url_ENUM:
             process2.wait()
             stdout, stderr = process2.communicate()
             if process2.returncode == 0:
+                if os.path.exists("../data") == False:
+                    os.mkdir("../data")
                 proces= subprocess.Popen(f'mv {self.purl.base_url(self.URLM)}.txt ../data', shell=True)
                 proces.wait()
                 print(f"Output file {self.purl.base_url(self.URLM)}.txt moved to ./data directory")

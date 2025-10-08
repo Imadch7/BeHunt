@@ -1,13 +1,13 @@
-
+import re
 import bs4
 import json
+import os
 try:
     from core.http import HTTPRequestHandler
     from core.url import URL
 except ImportError:
     from http import HTTPRequestHandler
     from url import URL
-
 
 class spider:
 
@@ -24,25 +24,26 @@ class spider:
         self.visited_urls.add(url)
         response = self.http.send_GET_request(url, headers=headers)
         if response and response.text:
-            #find all tags
             try:
                 try:
                     soup = bs4.BeautifulSoup(response.text, 'html.parser')
                 except:
                     soup = bs4.BeautifulSoup(response.text, 'lxml')
-                LINKS = [a.get('href') for a in soup.find_all('a', href=True)]
-                FORMS = [a.get('form') for a in soup.find_all('form')]
-                TEXTAREAS = [a.get('textarea') for a in soup.find_all('textarea')]
-                INPUTS = [a.get('input') for a in soup.find_all('input')]
-                SELECTS = [a.get('select') for a in soup.find_all('select')]
 
-                tags = {"links":LINKS,
-                        "forms":FORMS,
-                        "textareas":TEXTAREAS,
-                        "inputs":INPUTS,
-                        "selects":SELECTS}
+                LINKS = [a.get('href') for a in soup.find_all('a', href=True)]
+                FORMS = [str(form) for form in soup.find_all('form')]
+                TEXTAREAS = [str(textarea) for textarea in soup.find_all('textarea')]
+                INPUTS = [str(inp) for inp in soup.find_all('input')]
+                SELECTS = [str(sel) for sel in soup.find_all('select')]
+
+                tags = {
+                    "links": LINKS,
+                    "forms": FORMS,
+                    "textareas": TEXTAREAS,
+                    "inputs": INPUTS,
+                    "selects": SELECTS
+                }
                 return tags
-                
             except bs4.FeatureNotFound as e:
                 print("Error: BeautifulSoup feature not found.")
                 print(f"{e}")
@@ -54,7 +55,6 @@ class spider:
             self.TAGS[url] = tags
         
     def save_TAGS(self, url):
-        # Convert sets to lists for JSON serialization
         def convert(obj):
             if isinstance(obj, set):
                 return list(obj)
@@ -64,7 +64,62 @@ class spider:
                 return [convert(i) for i in obj]
             return obj
         serializable_TAGS = convert(self.TAGS)
-        with open('data/'+self.Url.base_url(url)+'.json', 'w') as f:
+        base = self.Url.base_url(url)
+        out_path = os.path.join('data/', f'{base}.json')
+        with open(out_path, 'w') as f:
             json.dump(serializable_TAGS, f, indent=4)
+    
+    '''
+        Extract the ids from the specified tag in the saved json file.
+        {
+        "url":
+            "inputs": [
+                "<input id=\"entreprise_search\" name=\"entreprise_search\" placeholder=\"Chercher ...\" type=\"text\"/>",
+                "<input class=\"checkbox\" id=\"mode\" style=\"height: 1px; width:0px;\" type=\"checkbox\"/>"
+            ]
+        }
+    '''
+    
+    def get_tag_payload(self, url, tag='input'):
+        ##
+        #
+
+        base = self.Url.base_url(url)
+        out_path = os.path.join('data/', f'{base}.json')
+
+        # If file does not exist, crawl and save tags
+        if not os.path.exists(out_path):
+            self.crawl(url)
+            self.save_TAGS(url)
+            # If still doesn't exist, return empty list
+            if not os.path.exists(out_path):
+                return []
+
+        # Robust regex for id extraction
+        # likely  id     =      "......"
+        pattern = r'id\s*=\s*"([^"]+)"'
+        payloads = []
+        try:
+            with open(out_path, 'r') as f:
+                data = json.load(f)
+                if not data:
+                    return []
+                tags = data.get(url, {}).get(tag+"s", [])
+                if not tags:
+                    print("tags empty")
+                    return []
+
+                for tag_str in tags:
+                    match = re.search(pattern, tag_str)
+                    if match:
+                        payloads.append(match.group(1))
+                
+            if payloads:
+                return payloads
+            else:
+                print("it return nothing")
+                return []
+        except json.JSONDecodeError:
+            return []
 
 

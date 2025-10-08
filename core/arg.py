@@ -13,7 +13,7 @@ class CLI:
 
         parser.add_argument("-u","--url",help="Target HOST/URL",action="store",required=True)
 
-        parser.add_argument("-v","--verbose",help="Enable verbose output",action="store_true")
+        parser.add_argument("-w","--wordlist",help="payload wordlist",action="store")
 
         parser.add_argument("-D","--Display",help="Display all the modules",action="store_true")
 
