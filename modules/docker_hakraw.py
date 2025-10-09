@@ -6,6 +6,38 @@ class Url_ENUM:
     def __init__(self,URLM):
         self.purl = url.URL()
         self.URLM = URLM
+        try:
+            pro = subprocess.run(["docker","-v"],
+                capture_output=True,
+                text=True,
+                check=False
+            )
+
+            if "Docker version" in pro.stdout:
+                print("Docker is already installed")
+            elif pro.returncode != 0:
+                print("Docker is not installed")
+                print("installation... ")
+                try:
+                    getDocker = subprocess.run(["docker","-v"],
+                        capture_output=True,
+                        text=True,
+                        check=False
+                    )
+                    if getDocker.returncode != 0:
+                        print("Verify your connection, Docker is not installed")
+                        exit(0)
+                    
+                    print(getDocker.stdout.strip())
+                except Exception as p:
+                    print(f"Maybe Connection Error : {p}")
+                    exit(0)
+
+        except Exception as e:
+            print(f"Error occured : {e}")
+            exit(0)
+
+
         self.COMMAND1 = "sudo docker build -t hakluke/hakrawler ."
         self.COMMAND2 = f"echo {URLM} | "
         self.COMMAND3 = f"sudo docker run --rm -i hakluke/hakrawler >> {self.purl.base_url(URLM)}.txt "

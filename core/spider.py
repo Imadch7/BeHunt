@@ -66,7 +66,7 @@ class spider:
         serializable_TAGS = convert(self.TAGS)
         base = self.Url.base_url(url)
         out_path = os.path.join('data/', f'{base}.json')
-        with open(out_path, 'w') as f:
+        with open(out_path, 'w',encoding='utf-8') as f:
             json.dump(serializable_TAGS, f, indent=4)
     
     '''
@@ -81,17 +81,15 @@ class spider:
     '''
     
     def get_tag_payload(self, url, tag='input'):
-        ##
-        #
 
         base = self.Url.base_url(url)
         out_path = os.path.join('data/', f'{base}.json')
 
-        # If file does not exist, crawl and save tags
+        
         if not os.path.exists(out_path):
             self.crawl(url)
             self.save_TAGS(url)
-            # If still doesn't exist, return empty list
+
             if not os.path.exists(out_path):
                 return []
 
@@ -100,7 +98,7 @@ class spider:
         pattern = r'id\s*=\s*"([^"]+)"'
         payloads = []
         try:
-            with open(out_path, 'r') as f:
+            with open(out_path, 'r',encoding='utf-8') as f:
                 data = json.load(f)
                 if not data:
                     return []

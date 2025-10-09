@@ -20,99 +20,126 @@ class Inject:
 
 
 
-    def sqli_test(self,payload_file,_404=None):
-        ids = self.spi.get_tag_payload(self.url,"input")
-        payloads=[]
-        if not os.path.exists(payload_file):
-            print(f"Payload file {payload_file} does not exist.")
-            return
-        
-        with open(payload_file, 'r') as f:
-            payloads = [line.strip() for line in f if line.strip()]
-        
-        '''with open("output/"+self.url+"response.json"):
-            responses = {
-                "status":,
-
-            }'''
-        
-        for id in ids:
-            for payload in payloads:
-                url_p=f"{self.url}?{id}=\"{payload}\""
-                response = self.http.send_GET_request(url_p)
-                new_status = response.status_code
-                new_text = response.text
-
-                new_payload = {
-                    "status": new_status,
-                    "text": new_text
-                }
-
-
-                if response and response.status_code == 200:
-                    self.responses["all_responses"].append(new_payload)
-                    if "sql" in response.text.lower() or "syntax" in response.text.lower() or "mysql" in response.text.lower() or "error" in response.text.lower():
-                        print(f"{Fore.RED}[x] Potential SQL Injection vulnerability found with payload:{Fore.WHITE} {payload}")
-                        self.vuln = True
-                    else:
-                        print("[-] No vulnerability found with payload: ")
-        if not self.vuln:
-            print("No SQL Injection vulnerabilities found.")
-    
-
-    def xss_test(self,payload_file,_404=None):
-        ids = self.spi.get_tag_payload(self.url,"select"),self.spi.get_tag_payload(self.url,"textarea"),self.spi.get_tag_payload(self.url,"form"),self.spi.get_tag_payload(self.url,"input")
-        payloads=[]
-        if not os.path.exists(payload_file):
-            print(f"Payload file {payload_file} does not exist.")
-            return
-        
-        with open(payload_file, 'r') as f:
-            payloads = [line.strip() for line in f if line.strip()]
+    def sqli_test(self,payload_file,_404=None,outformat="json"):
+        try:
+            ids = self.spi.get_tag_payload(self.url,"input")
+            payloads=[]
+            if not os.path.exists(payload_file):
+                print(f"Payload file {payload_file} does not exist.")
+                return
+            
+            with open(payload_file, 'r',encoding='utf-8') as f:
+                payloads = [line.strip() for line in f if line.strip()]
+            
             for id in ids:
                 for payload in payloads:
                     url_p=f"{self.url}?{id}=\"{payload}\""
                     response = self.http.send_GET_request(url_p)
+                    new_status = response.status_code
+                    new_text = response.text
+
+                    new_payload = {
+                        "status": new_status,
+                        "text": new_text
+                    }
+
+
                     if response and response.status_code == 200:
-                        if payload in response.text:
-                            print(f"{Fore.RED}[x] Potential XSS vulnerability found with payload:{Fore.WHITE} {payload}")
+                        self.responses["all_responses"].append(new_payload)
+                        if "sql" in response.text.lower() or "syntax" in response.text.lower() or "mysql" in response.text.lower() or "error" in response.text.lower():
+                            print(f"{Style.DIM}{Fore.RED}[x] Potential SQL Injection vulnerability found with payload:\n{Fore.WHITE} {payload}")
                             self.vuln = True
                         else:
                             print("[-] No vulnerability found with payload: ")
             if not self.vuln:
-                print("No XSS vulnerabilities found.")
+                print("No SQL Injection vulnerabilities found.")
+        except Exception as e:
+            print(f"Erro occured : {e}")
+
+    def xss_test(self,payload_file,_404=None):
+        try:
+            ids = self.spi.get_tag_payload(self.url,"select"),self.spi.get_tag_payload(self.url,"textarea"),self.spi.get_tag_payload(self.url,"form"),self.spi.get_tag_payload(self.url,"input")
+            payloads=[]
+            if not os.path.exists(payload_file):
+                print(f"Payload file {payload_file} does not exist.")
+                return
+            
+            with open(payload_file, 'r',encoding='utf-8') as f:
+                payloads = [line.strip() for line in f if line.strip()]
+                for id in ids:
+                    for payload in payloads:
+                        url_p=f"{self.url}?{id}=\"{payload}\""
+                        response = self.http.send_GET_request(url_p)
+                        new_status = response.status_code
+                        new_text = response.text
+
+                        new_payload = {
+                            "status": new_status,
+                            "text": new_text
+                        }
+                        if response and response.status_code == 200:
+                            self.responses["all_responses"].append(new_payload)
+                            if payload in response.text:
+                                print(f"{Style.DIM}{Fore.RED}[x] Potential XSS vulnerability found with payload:{Fore.WHITE} {payload}")
+                                self.vuln = True
+                            else:
+                                print("[-] No vulnerability found with payload: ")
+                if not self.vuln:
+                    print("No XSS vulnerabilities found.")
+        except Exception as e:
+            print(f"Erro occured : {e}")
         
     def lfi_test(self,payload_file,_404=None):
         """
         Local File Inclusion test
         """
-        ids = self.spi.get_tag_payload(self.url,"select"),self.spi.get_tag_payload(self.url,"textarea"),self.spi.get_tag_payload(self.url,"form"),self.spi.get_tag_payload(self.url,"input")
-        payloads=[]
-        if not os.path.exists(payload_file):
-            print(f"Payload file {payload_file} does not exist.")
-            return
-        
-        with open(payload_file, 'r') as f:
-            payloads = [line.strip() for line in f if line.strip()]
-            for id in ids:
-                for payload in payloads:
-                    url_p=f"{self.url}?{id}=\"{payload}\""
-                    response = self.http.send_GET_request(url_p)
-                    if response and response.status_code == 200:
-                        if "root:x:0:0:root" in response.text or "[boot loader]" in response.text or "[drivers]" in response.text:
-                            print(f"{Fore.RED}[x] Potential LFI vulnerability found with payload:{Fore.WHITE} {payload}")
-                            self.vuln = True
-                        else:
-                            print("[-] No vulnerability found with payload: ")
-            if not self.vuln:
-                print("No LFI vulnerabilities found.")
+        try:
+            ids = self.spi.get_tag_payload(self.url,"select"),self.spi.get_tag_payload(self.url,"textarea"),self.spi.get_tag_payload(self.url,"form"),self.spi.get_tag_payload(self.url,"input")
+            payloads=[]
+            if not os.path.exists(payload_file):
+                print(f"Payload file {payload_file} does not exist.")
+                return
+            
+            with open(payload_file, 'r',encoding='utf-8') as f:
+                payloads = [line.strip() for line in f if line.strip()]
+                for id in ids:
+                    for payload in payloads:
+                        url_p=f"{self.url}?{id}=\"{payload}\""
+                        response = self.http.send_GET_request(url_p)
 
-    def response_out(self):
+                        new_status = response.status_code
+                        new_text = response.text
+
+                        new_payload = {
+                            "status": new_status,
+                            "text": new_text
+                        }
+                        if response and response.status_code == 200:
+                            self.responses["all_responses"].append(new_payload)
+                            if "root:x:0:0:root" in response.text or "[boot loader]" in response.text or "[drivers]" in response.text:
+                                print(f"{Style.DIM}{Fore.RED}[x] Potential LFI vulnerability found with payload:{Fore.WHITE} {payload}")
+                                self.vuln = True
+                            else:
+                                print("[-] No vulnerability found with payload: ")
+                if not self.vuln:
+                    print("No LFI vulnerabilities found.")
+        except Exception as e:
+            print(f"Erro occured : {e}")
+
+    def response_out(self,outformat):
 
         try:
-            with open(f"output/{self.urlm.base_url(self.url)}_response.json",'a') as f:
-                json.dump(self.responses,f,indent=4)
+            if outformat=="json":
+                with open(f"output/{self.urlm.base_url(self.url)}_response.{outformat}",'a',encoding='utf-8') as f:
+                    json.dump(self.responses,f,indent=4)
+            else:
+                
+                os.makedirs(f"output/{self.urlm.base_url(self.url)}",exist_ok=True)
 
+                for i,res in enumerate(self.responses.get("all_responses", []), 1):
+                    res_text = res.get("text","")
+                    with open(f"output/{self.urlm.base_url(self.url)}/{self.urlm.base_url(self.url)}_response-{i}-.{outformat}",'a',encoding='utf-8') as f:
+                        f.write(res_text)
         except Exception as e:
             print(f"Error occured {e}")
 
