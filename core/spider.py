@@ -35,13 +35,15 @@ class spider:
                 TEXTAREAS = [str(textarea) for textarea in soup.find_all('textarea')]
                 INPUTS = [str(inp) for inp in soup.find_all('input')]
                 SELECTS = [str(sel) for sel in soup.find_all('select')]
+                SCRIPT= [str(scr) for scr in soup.find_all('script')]
 
                 tags = {
                     "links": LINKS,
                     "forms": FORMS,
                     "textareas": TEXTAREAS,
                     "inputs": INPUTS,
-                    "selects": SELECTS
+                    "selects": SELECTS,
+                    "script": SCRIPT
                 }
                 return tags
             except bs4.FeatureNotFound as e:
@@ -92,6 +94,9 @@ class spider:
 
             if not os.path.exists(out_path):
                 return []
+        
+        if tag=='script':
+            return ['src']
 
         # Robust regex for id extraction
         # likely  id     =      "......"
