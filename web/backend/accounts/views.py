@@ -2,12 +2,11 @@ import os
 import json
 
 from .models import LoginAttempt
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse, FileResponse, Http404
 from django.contrib.auth.models import User
-from django.http import HttpResponse
-from django.http import FileResponse, Http404
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.hashers import check_password
 from django.shortcuts import render, redirect
 from django.contrib.auth.hashers import make_password
 
@@ -62,14 +61,43 @@ def submit_login(request):
         return JsonResponse({'success': False, 'error': str(e)}, status=400)
 '''
 
+@csrf_exempt
+def submit_login(request):
+    if request.method != 'POST':
+        return JsonResponse({'success': False, 'message': 'Incorrect HTTP method used'}, status=405)
+    
+    try:
+        data = json.loads(request.body.decode('utf-8'))
+        email = data.get('email')
+        password = data.get('password')
+        print(f'data is: {data}')
+        
+        if not email or not password:
+            return JsonResponse({'success': False, 'error': 'Missing email or password'}, status=400)
+        
+        # Check if the user exists in the table
+        try:
+            user = LoginAttempt.objects.all(email=email, password=password)
+        except LoginAttempt.DoesNotExist:
+            return JsonResponse({'success': False, 'error': 'User not found'}, status=404)
+        
+        # Compare password safely using Django's built-in hash checker
+        if check_password(password, user.password):
+            return JsonResponse({'success': True, 'message': 'Login successful'}, status=200)
+        else:
+            return JsonResponse({'success': False, 'error': 'Invalid credentials'}, status=401)
+        
+    except Exception as e:
+        return JsonResponse({'seccess': False, 'error': str(e)}, status=400)
+
 def home(request):
     # Path to the static index.html
     base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-    index_path = os.path.join(base_dir, 'frontend', 'index.html')
+    index_path = os.path.join(base_dir, 'frontend', 'login.html')
     try:
         return FileResponse(open(index_path, 'rb'), content_type='text/html')
     except FileNotFoundError:
-        raise Http404('index.html not found')
+        raise Http404('login.html not found')
     
 @csrf_exempt
 def submit_signup(request):
@@ -89,10 +117,12 @@ def submit_signup(request):
             return JsonResponse({'success': False, 'error': 'User already exists'}, status=400)
         
         # Save into my PostgreSQL LoginAttempt table
-        attempt = LoginAttempt.objects.create(
+        attempt = LoginAttempt.objects.all(
             email=email,
-            password=make_password(password) # 🔒 hash the password
+            #password=make_password(password) # 🔒 hash the password
         )
+        
+        print(f'\n\nattempt is: {attempt}\n\n')
         
         return JsonResponse({'success': True, 'message': 'Signup successful', 'id': attempt.id}, status=200)
     
