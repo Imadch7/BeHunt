@@ -20,7 +20,7 @@ class Inject:
 
 
 
-    def sqli_test(self,payload_file,_404=None,outformat="json"):
+    def sqli_test(self,payload_file,_404=None,outformat="json",payls="email"):
         
         print("\n" + "="*70)
         print(f"[:: SQL INJECTION TEST STARTED ::]")
@@ -38,6 +38,7 @@ class Inject:
             
             with open(payload_file, 'r',encoding='utf-8') as f:
                 payloads = [line.strip() for line in f if line.strip()]
+                payloads.append(payls)
 
             print(f"Total Input Tags Found: {len(ids)}")
             print(f"Total Payloads Loaded: {len(payloads)}")

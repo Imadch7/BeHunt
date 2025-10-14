@@ -7,7 +7,7 @@ class CLI:
 
 
     def Arguments(self):
-        parser = argparse.ArgumentParser(add_help=False,formatter_class=argparse.RawTextHelpFormatter,usage="python3 Behunt.py [options]")
+        parser = argparse.ArgumentParser(add_help=False,formatter_class=argparse.RawTextHelpFormatter,usage="Behunt [options]")
 
         parser.add_argument("-u","--url",help="Target HOST/URL",action="store")
 

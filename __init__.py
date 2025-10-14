@@ -10,7 +10,7 @@ from modules import logo
 '''
 try --> 
 
-    python3 __init__.py -u https://elmouchir.caci.dz/login -T 2 -w payloads/jstnkndy.txt -O html
+    python3 __init__.py -u url-T 2 -w payloads/jstnkndy.txt -O html
 '''
 
 class Behunt:
@@ -22,6 +22,7 @@ class Behunt:
 if __name__ == "__main__":
 
 	BH = Behunt()
+	logo.LOGO("                  BeHunt                   ").draw_LG()
 	print("Welcome to Behunt")
 	try:
 		parser = BH.Arg.Arguments()
@@ -30,12 +31,7 @@ if __name__ == "__main__":
 		if len(sys.argv) > 1 and sys.argv[1] in ('-h', '--help'):
 			print("Options:")
 			print(parser.format_help())
-			print("hell")
 			sys.exit(0)
-		elif not sys.argv or len(sys.argv)==1:
-			print(parser.format_help())
-		
-		logo.LOGO("BeHunt").draw_LG()
 		
 		#Beginning Attack Process
 		url_str = args.url
@@ -109,14 +105,11 @@ if __name__ == "__main__":
 			else:
 				print("[*] Add a wordlist")
 		else:
-			print(parser.format_help())
-			print("gogo")
+			print("Try Behunt -h")
 
 	except IndexError:
 		print("No arguments provided. Use -h or --help for usage information.")
 		sys.exit(1)
-	except SystemExit as e:
-		print(f"GoodBey {getpass.getuser()}")
 	except Exception as e:
 		print(f"An error occurred: {e}")
 		inj.response_out(args.output)
