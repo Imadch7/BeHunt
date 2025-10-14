@@ -28,12 +28,18 @@ git clone https://github.com/Imadch7/BeHunt.git
 cd ~/BeHunt
 ```
 
-2. Execute the setup script:
+2. Install all the requirments:
+```bash
+pip install -r requirements.txt
+```
+
+
+3. Execute the setup script:
 ```bash
 ./alias.sh
 ```
 
-3. Verify installation:
+4. Verify installation:
 ```bash
 Behunt -h
 ```
