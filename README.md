@@ -5,4 +5,15 @@ BeHunt is an open-source web vulnerability analysis tool written in Python. it p
 
 How to get it : 
 
-    git clone 
+    git clone https://github.com/Imadch7/BeHunt.git
+
+How to break down into BeHunt:
+
+1. go to the BeHunt diractory: 
+    cd ~/BeHunt
+
+2. execute this command:
+    ./alias.sh
+
+3. now try :
+    Behunt -h
