@@ -119,7 +119,10 @@ class Inject:
                 payloads = [line.strip() for line in f if line.strip()]
                 for id in ids:
                     for payload in payloads:
-                        url_p=f"{self.url}?{id}=\"{payload}\""
+                        if id!="?":
+                            url_p=f"{self.url}?{id}=\"{payload}\""
+                        else:
+                            url_p=f"{self.url}?{payload}"
                         response = self.http.send_GET_request(url_p)
                         new_status = response.status_code
                         new_text = response.text

@@ -1,7 +1,10 @@
 import sys
+import os
+from pathlib import Path
 import getpass
 from core import url
 from core import spider
+from core import find_dir
 from modules import arg
 from modules import docker_hakraw
 from modules import inject
@@ -18,11 +21,14 @@ class Behunt:
 	def __init__(self):
 		self.Url = url.URL()
 		self.Arg = arg.CLI()
+		tar_path = find_dir.Find_Dir.get_PATH()
+		os.chdir(tar_path)
+
 
 if __name__ == "__main__":
 
-	BH = Behunt()
 	logo.LOGO("                  BeHunt                   ").draw_LG()
+	BH = Behunt()
 	print("Welcome to Behunt")
 	try:
 		parser = BH.Arg.Arguments()
@@ -114,4 +120,3 @@ if __name__ == "__main__":
 		print(f"An error occurred: {e}")
 		inj.response_out(args.output)
 		sys.exit(1)
-		

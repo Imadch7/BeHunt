@@ -1,5 +1,5 @@
 #!/bin/bash
 
-#location of __init__.py 
-locat=~/Behunt/BeHunt/__init__.py
-alias Behunt='python3 $locat/__init__.py'
+current_dir=$(pwd)/"__init__.py"
+echo "alias behunt='$current_dir'" >> ~/.zshrc 
+source ~/.zshrc 

@@ -96,7 +96,7 @@ class spider:
                 return []
         
         if tag=='script':
-            return ['src']
+            return ['?']
 
         # Robust regex for id extraction
         # likely  id     =      "......"

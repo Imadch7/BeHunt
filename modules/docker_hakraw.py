@@ -41,7 +41,11 @@ class Url_ENUM:
         self.COMMAND1 = "sudo docker build -t hakluke/hakrawler ."
         self.COMMAND2 = f"echo {URLM} | "
         self.COMMAND3 = f"sudo docker run --rm -i hakluke/hakrawler >> {self.purl.base_url(URLM)}.txt "
-        os.chdir("HR")
+        try:
+            os.chdir("subdomain")
+        except Exception as e:
+            print("that file doesn't exist")
+            exit(1)
     
     def run(self):
         try:
