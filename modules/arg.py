@@ -22,6 +22,6 @@ class CLI:
         parser.add_argument("-T","--Tuning",help="Tuning options:       \n" \
                             "[1]. LFI ijection.\n" \
                             "[2]. SQLi(SQL injection)\n" \
-                            "[3]. XSS Cross Site Scripting.\n",choices=['1','2','3'],default='2',action="store")
+                            "[3]. XSS Cross Site Scripting.\n",choices=['1','2','3'],action="store")
 
         return parser

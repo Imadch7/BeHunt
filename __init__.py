@@ -48,9 +48,8 @@ if __name__ == "__main__":
 			if args.Enum == True:
 				enum = docker_hakraw.Url_ENUM(url_str)
 				enum.run()
-				print("The Result of Enumeration is in data file")
-				print("Check it , if you want to change your input url")
-				ch = input("you want to change it (Y/n):")
+				print("The Result of Enumeration is in data file\n")
+				ch = input("Do you want to do some testing?(Y/n)")
 				if ch.capitalize() == 'Y':
 					url_new = input("Enter your new URL : ")
 					if url_new and url.URL().valid_url(url_new):
@@ -64,24 +63,21 @@ if __name__ == "__main__":
 					inp = input("[*] Your Choice :")
 					pay = input("[*] Enter your Payload path From payloads DIR: ")
 
-					if not pay or pay==" ":
+					if not pay:
 						print("You Gonna use payloads/sqli/jstnkndy.txt")
 						pay="payloads/sqli/jstnkndy.txt"
 
-					if inp == 1:
-						inj.lfi_test(pay)
-					elif inp == 3:
-						inj.xss_test(pay)
-					else:
-						inj.sqli_test(pay)
+						if inp == 1:
+							inj.lfi_test(pay)
+						elif inp == 3:
+							inj.xss_test(pay)
+						else:
+							inj.sqli_test(pay)
 
-					forma=input("Do you want the Output of the test(Y/n):")
-					if forma.capitalize() == 'Y':
-						Form=input("[*] Enter The Format : (json,txt,html)")
-						inj.response_out(Form)
-					
-					print(f"Welcome another Time {getpass.getuser()}")
-			
+						forma=input("Do you want the Output of the test(Y/n):")
+						if forma.capitalize() == 'Y':
+							Form=input("[*] Enter The Format : (json,txt,html)")
+							inj.response_out(Form)
 			elif args.wordlist:
 
 				if args.Tuning == '1':
@@ -120,3 +116,5 @@ if __name__ == "__main__":
 		print(f"An error occurred: {e}")
 		inj.response_out(args.output)
 		sys.exit(1)
+	finally:
+		print(f"Welcome another Time {getpass.getuser()}")

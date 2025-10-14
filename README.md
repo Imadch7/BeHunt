@@ -36,12 +36,13 @@ pip install -r requirements.txt
 
 3. Execute the setup script:
 ```bash
-./alias.sh
+echo "alias behunt='your dir/__init__.py'" >> ~/.zshrc ##OR ~/.bashrc
+source ~/.zshrc ##OR ~/.bashrc
 ```
 
 4. Verify installation:
 ```bash
-Behunt -h
+behunt -h
 ```
 
 ## Usage
