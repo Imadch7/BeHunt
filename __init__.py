@@ -71,7 +71,7 @@ if __name__ == "__main__":
 				elif args.Tuning == '3':
 					inj.xss_test(args.wordlist)
 					if not args.output:
-						Form=input("[*] Enter The Format (json,txt,html) : ")
+						Form=input("[*] Enter The Format (json,txt,csv) : ")
 						inj.response_out(Form)
 					else:
 						inj.response_out(args.output)

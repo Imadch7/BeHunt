@@ -50,13 +50,11 @@ class Inject:
                     url_p=f"{self.url}?{id}=\"{payload}\""
                     response = self.http.send_GET_request(url_p)
                     new_status = response.status_code
-                    new_text = response.text
                     text_lower = response.text.lower()
 
                     new_payload = {
                         "status": new_status,
-                        "payload":payload,
-                        "text": new_text
+                        "target_url":url_p
                     }
 
                     print(f"    [>] Pkg Sent | Payload: '{payload[:25]}...' | Status: {new_status}")
@@ -125,11 +123,10 @@ class Inject:
                             url_p=f"{self.url}?{payload}"
                         response = self.http.send_GET_request(url_p)
                         new_status = response.status_code
-                        new_text = response.text
 
                         new_payload = {
                             "status": new_status,
-                            "text": new_text
+                            "target_url":url_p
                         }
                         if response and response.status_code != 404:
                             self.responses["all_responses"].append(new_payload)
@@ -162,11 +159,10 @@ class Inject:
                         response = self.http.send_GET_request(url_p)
 
                         new_status = response.status_code
-                        new_text = response.text
 
                         new_payload = {
                             "status": new_status,
-                            "text": new_text
+                            "target_url":url_p
                         }
                         if response and response.status_code != 404:
                             self.responses["all_responses"].append(new_payload)
