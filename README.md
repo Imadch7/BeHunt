@@ -86,7 +86,7 @@ Behunt -u https://example.com -T 2 -w /path/to/wordlist.txt
 
 ### XSS scan with JSON output
 ```bash
-Behunt -u https://example.com -T 3 -O json
+Behunt -u https://example.com -T 3 -w /path/to/wordlist.txt -O json
 ```
 
 ## Contributing
