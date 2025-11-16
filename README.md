@@ -38,8 +38,15 @@ pip install -r requirements.txt
 ```bash
 ./alias.sh
 ```
-
-4. Verify installation:
+4. Create an Envirenement:
+```bash
+uv venv
+```
+5. Run the Envirenement:
+```bash
+source .venv/bin/activate
+```
+6. Verify installation:
 ```bash
 behunt -h
 ```

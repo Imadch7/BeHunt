@@ -51,30 +51,13 @@ if __name__ == "__main__":
 				print("The Result of Enumeration is in data file\n")
 			elif args.wordlist:
 
-				if args.Tuning == '1':
-					inj.lfi_test(args.wordlist)
-					if not args.output:
-						Form=input("[*] Enter The Format (json,txt,html) : ")
-						inj.response_out(Form)
-					else:
-						inj.response_out(args.output)
-					
-				elif args.Tuning == '2':
-					print("hello world")
-					inj.sqli_test(args.wordlist)
-					if not args.output:
-						Form=input("[*] Enter The Format (json,txt,html) : ")
-						inj.response_out(Form)
-					else:
-						inj.response_out(args.output)
-					
-				elif args.Tuning == '3':
-					inj.xss_test(args.wordlist)
-					if not args.output:
-						Form=input("[*] Enter The Format (json,txt,csv) : ")
-						inj.response_out(Form)
-					else:
-						inj.response_out(args.output)
+				if args.Tuning:
+					try:
+						inj.TEST(args.wordlist,args.Tuning)
+					except AttributeError as e:
+						print(f"wech wech: {e}")
+				else:
+					print("[*] Add Tuning Level -T 1 or 2 or 3")
 			else:
 				print("[*] Add a wordlist")
 		else:
@@ -88,4 +71,6 @@ if __name__ == "__main__":
 		inj.response_out(args.output)
 		sys.exit(1)
 	finally:
+		if args.output:
+			inj.response_out(args.output)
 		print(f"Welcome another Time {getpass.getuser()}")

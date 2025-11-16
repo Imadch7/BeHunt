@@ -98,8 +98,9 @@ class spider:
         if tag=='script':
             return ['?']
 
-        # Robust regex for id extraction
-        # likely  id     =      "......"
+        # Extract attribute names (prefer `name`, then `id`) from saved tag HTML.
+        # This is more reliable than only searching for id="..." using regex,
+        # because many forms use the `name` attribute for parameters.
         pattern = r'id\s*=\s*"([^"]+)"'
         payloads = []
         try:
@@ -113,6 +114,24 @@ class spider:
                     return []
 
                 for tag_str in tags:
+                    # Try parsing with BeautifulSoup to get attributes
+                    try:
+                        soup = bs4.BeautifulSoup(tag_str, 'html.parser')
+                        element = soup.find()
+                        if element:
+                            name_attr = element.get('name')
+                            id_attr = element.get('id')
+                            if name_attr:
+                                payloads.append(name_attr)
+                                continue
+                            if id_attr:
+                                payloads.append(id_attr)
+                                continue
+                    except Exception:
+                        # fallback to regex if parsing fails
+                        pass
+
+                    # Fallback: try regex for id attribute
                     match = re.search(pattern, tag_str)
                     if match:
                         payloads.append(match.group(1))
