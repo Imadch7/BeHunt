@@ -1,0 +1,843 @@
+{
+    "metadata": {
+        "scan_id": "8903035",
+        "target_domain": "testphp.vulnweb.com",
+        "scan_date": "2025-11-18T16:37:12.068299",
+        "scanner_version": "1.0",
+        "authorization": "Authorized Test"
+    },
+    "all_responses": [
+        {
+            "test_id": "searchFor",
+            "test_type": "SQL Injection",
+            "payload_type": "Boolean",
+            "status": 200,
+            "target_url": "http://testphp.vulnweb.com?searchFor=\"\u2018 or 3=3 --\"",
+            "response_time_ms": 410.267,
+            "response_size_bytes": 4958,
+            "headers": {
+                "Server": "nginx/1.19.0",
+                "Date": "Tue, 18 Nov 2025 15:37:12 GMT",
+                "Content-Type": "text/html; charset=UTF-8",
+                "Transfer-Encoding": "chunked",
+                "Connection": "keep-alive",
+                "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+                "Content-Encoding": "gzip"
+            },
+            "vulnerability_indicators": {
+                "sql_errors": true,
+                "unusual_response_size": false,
+                "response_time_anomaly": false
+            },
+            "severity": "confirmed",
+            "confirmed": true,
+            "notes": "Requires manual verification"
+        },
+        {
+            "test_id": "goButton",
+            "test_type": "SQL Injection",
+            "payload_type": "Boolean",
+            "status": 200,
+            "target_url": "http://testphp.vulnweb.com?goButton=\"\u2018 or 3=3 --\"",
+            "response_time_ms": 375.77700000000004,
+            "response_size_bytes": 4958,
+            "headers": {
+                "Server": "nginx/1.19.0",
+                "Date": "Tue, 18 Nov 2025 15:37:12 GMT",
+                "Content-Type": "text/html; charset=UTF-8",
+                "Transfer-Encoding": "chunked",
+                "Connection": "keep-alive",
+                "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+                "Content-Encoding": "gzip"
+            },
+            "vulnerability_indicators": {
+                "sql_errors": true,
+                "unusual_response_size": false,
+                "response_time_anomaly": false
+            },
+            "severity": "confirmed",
+            "confirmed": true,
+            "notes": "Requires manual verification"
+        },
+        {
+            "test_id": "searchFor",
+            "test_type": "SQL Injection",
+            "payload_type": "Boolean",
+            "status": 200,
+            "target_url": "http://testphp.vulnweb.com?searchFor=\"' OR SELECT NULL,NULL,--\"",
+            "response_time_ms": 375.532,
+            "response_size_bytes": 4958,
+            "headers": {
+                "Server": "nginx/1.19.0",
+                "Date": "Tue, 18 Nov 2025 15:37:13 GMT",
+                "Content-Type": "text/html; charset=UTF-8",
+                "Transfer-Encoding": "chunked",
+                "Connection": "keep-alive",
+                "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+                "Content-Encoding": "gzip"
+            },
+            "vulnerability_indicators": {
+                "sql_errors": true,
+                "unusual_response_size": false,
+                "response_time_anomaly": false
+            },
+            "severity": "confirmed",
+            "confirmed": true,
+            "notes": "Requires manual verification"
+        },
+        {
+            "test_id": "goButton",
+            "test_type": "SQL Injection",
+            "payload_type": "Boolean",
+            "status": 200,
+            "target_url": "http://testphp.vulnweb.com?goButton=\"' OR SELECT NULL,NULL,--\"",
+            "response_time_ms": 388.038,
+            "response_size_bytes": 4958,
+            "headers": {
+                "Server": "nginx/1.19.0",
+                "Date": "Tue, 18 Nov 2025 15:37:13 GMT",
+                "Content-Type": "text/html; charset=UTF-8",
+                "Transfer-Encoding": "chunked",
+                "Connection": "keep-alive",
+                "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+                "Content-Encoding": "gzip"
+            },
+            "vulnerability_indicators": {
+                "sql_errors": true,
+                "unusual_response_size": false,
+                "response_time_anomaly": false
+            },
+            "severity": "confirmed",
+            "confirmed": true,
+            "notes": "Requires manual verification"
+        },
+        {
+            "test_id": "searchFor",
+            "test_type": "SQL Injection",
+            "payload_type": "Boolean",
+            "status": 200,
+            "target_url": "http://testphp.vulnweb.com?searchFor=\"'123\"",
+            "response_time_ms": 377.019,
+            "response_size_bytes": 4958,
+            "headers": {
+                "Server": "nginx/1.19.0",
+                "Date": "Tue, 18 Nov 2025 15:37:14 GMT",
+                "Content-Type": "text/html; charset=UTF-8",
+                "Transfer-Encoding": "chunked",
+                "Connection": "keep-alive",
+                "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+                "Content-Encoding": "gzip"
+            },
+            "vulnerability_indicators": {
+                "sql_errors": true,
+                "unusual_response_size": false,
+                "response_time_anomaly": false
+            },
+            "severity": "confirmed",
+            "confirmed": true,
+            "notes": "Requires manual verification"
+        },
+        {
+            "test_id": "goButton",
+            "test_type": "SQL Injection",
+            "payload_type": "Boolean",
+            "status": 200,
+            "target_url": "http://testphp.vulnweb.com?goButton=\"'123\"",
+            "response_time_ms": 378.90200000000004,
+            "response_size_bytes": 4958,
+            "headers": {
+                "Server": "nginx/1.19.0",
+                "Date": "Tue, 18 Nov 2025 15:37:14 GMT",
+                "Content-Type": "text/html; charset=UTF-8",
+                "Transfer-Encoding": "chunked",
+                "Connection": "keep-alive",
+                "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+                "Content-Encoding": "gzip"
+            },
+            "vulnerability_indicators": {
+                "sql_errors": true,
+                "unusual_response_size": false,
+                "response_time_anomaly": false
+            },
+            "severity": "confirmed",
+            "confirmed": true,
+            "notes": "Requires manual verification"
+        },
+        {
+            "test_id": "searchFor",
+            "test_type": "SQL Injection",
+            "payload_type": "Boolean",
+            "status": 200,
+            "target_url": "http://testphp.vulnweb.com?searchFor=\"''123\"",
+            "response_time_ms": 383.78299999999996,
+            "response_size_bytes": 4958,
+            "headers": {
+                "Server": "nginx/1.19.0",
+                "Date": "Tue, 18 Nov 2025 15:37:14 GMT",
+                "Content-Type": "text/html; charset=UTF-8",
+                "Transfer-Encoding": "chunked",
+                "Connection": "keep-alive",
+                "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+                "Content-Encoding": "gzip"
+            },
+            "vulnerability_indicators": {
+                "sql_errors": true,
+                "unusual_response_size": false,
+                "response_time_anomaly": false
+            },
+            "severity": "confirmed",
+            "confirmed": true,
+            "notes": "Requires manual verification"
+        },
+        {
+            "test_id": "goButton",
+            "test_type": "SQL Injection",
+            "payload_type": "Boolean",
+            "status": 200,
+            "target_url": "http://testphp.vulnweb.com?goButton=\"''123\"",
+            "response_time_ms": 369.426,
+            "response_size_bytes": 4958,
+            "headers": {
+                "Server": "nginx/1.19.0",
+                "Date": "Tue, 18 Nov 2025 15:37:15 GMT",
+                "Content-Type": "text/html; charset=UTF-8",
+                "Transfer-Encoding": "chunked",
+                "Connection": "keep-alive",
+                "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+                "Content-Encoding": "gzip"
+            },
+            "vulnerability_indicators": {
+                "sql_errors": true,
+                "unusual_response_size": false,
+                "response_time_anomaly": false
+            },
+            "severity": "confirmed",
+            "confirmed": true,
+            "notes": "Requires manual verification"
+        },
+        {
+            "test_id": "searchFor",
+            "test_type": "SQL Injection",
+            "payload_type": "Boolean",
+            "status": 200,
+            "target_url": "http://testphp.vulnweb.com?searchFor=\"`123\"",
+            "response_time_ms": 374.227,
+            "response_size_bytes": 4958,
+            "headers": {
+                "Server": "nginx/1.19.0",
+                "Date": "Tue, 18 Nov 2025 15:37:15 GMT",
+                "Content-Type": "text/html; charset=UTF-8",
+                "Transfer-Encoding": "chunked",
+                "Connection": "keep-alive",
+                "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+                "Content-Encoding": "gzip"
+            },
+            "vulnerability_indicators": {
+                "sql_errors": true,
+                "unusual_response_size": false,
+                "response_time_anomaly": false
+            },
+            "severity": "confirmed",
+            "confirmed": true,
+            "notes": "Requires manual verification"
+        },
+        {
+            "test_id": "goButton",
+            "test_type": "SQL Injection",
+            "payload_type": "Boolean",
+            "status": 200,
+            "target_url": "http://testphp.vulnweb.com?goButton=\"`123\"",
+            "response_time_ms": 385.748,
+            "response_size_bytes": 4958,
+            "headers": {
+                "Server": "nginx/1.19.0",
+                "Date": "Tue, 18 Nov 2025 15:37:15 GMT",
+                "Content-Type": "text/html; charset=UTF-8",
+                "Transfer-Encoding": "chunked",
+                "Connection": "keep-alive",
+                "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+                "Content-Encoding": "gzip"
+            },
+            "vulnerability_indicators": {
+                "sql_errors": true,
+                "unusual_response_size": false,
+                "response_time_anomaly": false
+            },
+            "severity": "confirmed",
+            "confirmed": true,
+            "notes": "Requires manual verification"
+        },
+        {
+            "test_id": "searchFor",
+            "test_type": "SQL Injection",
+            "payload_type": "Boolean",
+            "status": 200,
+            "target_url": "http://testphp.vulnweb.com?searchFor=\"\")123\"",
+            "response_time_ms": 378.467,
+            "response_size_bytes": 4958,
+            "headers": {
+                "Server": "nginx/1.19.0",
+                "Date": "Tue, 18 Nov 2025 15:37:16 GMT",
+                "Content-Type": "text/html; charset=UTF-8",
+                "Transfer-Encoding": "chunked",
+                "Connection": "keep-alive",
+                "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+                "Content-Encoding": "gzip"
+            },
+            "vulnerability_indicators": {
+                "sql_errors": true,
+                "unusual_response_size": false,
+                "response_time_anomaly": false
+            },
+            "severity": "confirmed",
+            "confirmed": true,
+            "notes": "Requires manual verification"
+        },
+        {
+            "test_id": "goButton",
+            "test_type": "SQL Injection",
+            "payload_type": "Boolean",
+            "status": 200,
+            "target_url": "http://testphp.vulnweb.com?goButton=\"\")123\"",
+            "response_time_ms": 375.888,
+            "response_size_bytes": 4958,
+            "headers": {
+                "Server": "nginx/1.19.0",
+                "Date": "Tue, 18 Nov 2025 15:37:16 GMT",
+                "Content-Type": "text/html; charset=UTF-8",
+                "Transfer-Encoding": "chunked",
+                "Connection": "keep-alive",
+                "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+                "Content-Encoding": "gzip"
+            },
+            "vulnerability_indicators": {
+                "sql_errors": true,
+                "unusual_response_size": false,
+                "response_time_anomaly": false
+            },
+            "severity": "confirmed",
+            "confirmed": true,
+            "notes": "Requires manual verification"
+        },
+        {
+            "test_id": "searchFor",
+            "test_type": "SQL Injection",
+            "payload_type": "Boolean",
+            "status": 200,
+            "target_url": "http://testphp.vulnweb.com?searchFor=\"\"))123\"",
+            "response_time_ms": 393.032,
+            "response_size_bytes": 4958,
+            "headers": {
+                "Server": "nginx/1.19.0",
+                "Date": "Tue, 18 Nov 2025 15:37:17 GMT",
+                "Content-Type": "text/html; charset=UTF-8",
+                "Transfer-Encoding": "chunked",
+                "Connection": "keep-alive",
+                "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+                "Content-Encoding": "gzip"
+            },
+            "vulnerability_indicators": {
+                "sql_errors": true,
+                "unusual_response_size": false,
+                "response_time_anomaly": false
+            },
+            "severity": "confirmed",
+            "confirmed": true,
+            "notes": "Requires manual verification"
+        },
+        {
+            "test_id": "goButton",
+            "test_type": "SQL Injection",
+            "payload_type": "Boolean",
+            "status": 200,
+            "target_url": "http://testphp.vulnweb.com?goButton=\"\"))123\"",
+            "response_time_ms": 374.831,
+            "response_size_bytes": 4958,
+            "headers": {
+                "Server": "nginx/1.19.0",
+                "Date": "Tue, 18 Nov 2025 15:37:17 GMT",
+                "Content-Type": "text/html; charset=UTF-8",
+                "Transfer-Encoding": "chunked",
+                "Connection": "keep-alive",
+                "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+                "Content-Encoding": "gzip"
+            },
+            "vulnerability_indicators": {
+                "sql_errors": true,
+                "unusual_response_size": false,
+                "response_time_anomaly": false
+            },
+            "severity": "confirmed",
+            "confirmed": true,
+            "notes": "Requires manual verification"
+        },
+        {
+            "test_id": "searchFor",
+            "test_type": "SQL Injection",
+            "payload_type": "Boolean",
+            "status": 200,
+            "target_url": "http://testphp.vulnweb.com?searchFor=\"`)123\"",
+            "response_time_ms": 376.06600000000003,
+            "response_size_bytes": 4958,
+            "headers": {
+                "Server": "nginx/1.19.0",
+                "Date": "Tue, 18 Nov 2025 15:37:17 GMT",
+                "Content-Type": "text/html; charset=UTF-8",
+                "Transfer-Encoding": "chunked",
+                "Connection": "keep-alive",
+                "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+                "Content-Encoding": "gzip"
+            },
+            "vulnerability_indicators": {
+                "sql_errors": true,
+                "unusual_response_size": false,
+                "response_time_anomaly": false
+            },
+            "severity": "confirmed",
+            "confirmed": true,
+            "notes": "Requires manual verification"
+        },
+        {
+            "test_id": "goButton",
+            "test_type": "SQL Injection",
+            "payload_type": "Boolean",
+            "status": 200,
+            "target_url": "http://testphp.vulnweb.com?goButton=\"`)123\"",
+            "response_time_ms": 383.552,
+            "response_size_bytes": 4958,
+            "headers": {
+                "Server": "nginx/1.19.0",
+                "Date": "Tue, 18 Nov 2025 15:37:18 GMT",
+                "Content-Type": "text/html; charset=UTF-8",
+                "Transfer-Encoding": "chunked",
+                "Connection": "keep-alive",
+                "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+                "Content-Encoding": "gzip"
+            },
+            "vulnerability_indicators": {
+                "sql_errors": true,
+                "unusual_response_size": false,
+                "response_time_anomaly": false
+            },
+            "severity": "confirmed",
+            "confirmed": true,
+            "notes": "Requires manual verification"
+        },
+        {
+            "test_id": "searchFor",
+            "test_type": "SQL Injection",
+            "payload_type": "Boolean",
+            "status": 200,
+            "target_url": "http://testphp.vulnweb.com?searchFor=\"`))123\"",
+            "response_time_ms": 376.016,
+            "response_size_bytes": 4958,
+            "headers": {
+                "Server": "nginx/1.19.0",
+                "Date": "Tue, 18 Nov 2025 15:37:18 GMT",
+                "Content-Type": "text/html; charset=UTF-8",
+                "Transfer-Encoding": "chunked",
+                "Connection": "keep-alive",
+                "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+                "Content-Encoding": "gzip"
+            },
+            "vulnerability_indicators": {
+                "sql_errors": true,
+                "unusual_response_size": false,
+                "response_time_anomaly": false
+            },
+            "severity": "confirmed",
+            "confirmed": true,
+            "notes": "Requires manual verification"
+        },
+        {
+            "test_id": "goButton",
+            "test_type": "SQL Injection",
+            "payload_type": "Boolean",
+            "status": 200,
+            "target_url": "http://testphp.vulnweb.com?goButton=\"`))123\"",
+            "response_time_ms": 371.911,
+            "response_size_bytes": 4958,
+            "headers": {
+                "Server": "nginx/1.19.0",
+                "Date": "Tue, 18 Nov 2025 15:37:19 GMT",
+                "Content-Type": "text/html; charset=UTF-8",
+                "Transfer-Encoding": "chunked",
+                "Connection": "keep-alive",
+                "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+                "Content-Encoding": "gzip"
+            },
+            "vulnerability_indicators": {
+                "sql_errors": true,
+                "unusual_response_size": false,
+                "response_time_anomaly": false
+            },
+            "severity": "confirmed",
+            "confirmed": true,
+            "notes": "Requires manual verification"
+        },
+        {
+            "test_id": "searchFor",
+            "test_type": "SQL Injection",
+            "payload_type": "Boolean",
+            "status": 200,
+            "target_url": "http://testphp.vulnweb.com?searchFor=\"'))123\"",
+            "response_time_ms": 384.884,
+            "response_size_bytes": 4958,
+            "headers": {
+                "Server": "nginx/1.19.0",
+                "Date": "Tue, 18 Nov 2025 15:37:19 GMT",
+                "Content-Type": "text/html; charset=UTF-8",
+                "Transfer-Encoding": "chunked",
+                "Connection": "keep-alive",
+                "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+                "Content-Encoding": "gzip"
+            },
+            "vulnerability_indicators": {
+                "sql_errors": true,
+                "unusual_response_size": false,
+                "response_time_anomaly": false
+            },
+            "severity": "confirmed",
+            "confirmed": true,
+            "notes": "Requires manual verification"
+        },
+        {
+            "test_id": "goButton",
+            "test_type": "SQL Injection",
+            "payload_type": "Boolean",
+            "status": 200,
+            "target_url": "http://testphp.vulnweb.com?goButton=\"'))123\"",
+            "response_time_ms": 377.309,
+            "response_size_bytes": 4958,
+            "headers": {
+                "Server": "nginx/1.19.0",
+                "Date": "Tue, 18 Nov 2025 15:37:19 GMT",
+                "Content-Type": "text/html; charset=UTF-8",
+                "Transfer-Encoding": "chunked",
+                "Connection": "keep-alive",
+                "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+                "Content-Encoding": "gzip"
+            },
+            "vulnerability_indicators": {
+                "sql_errors": true,
+                "unusual_response_size": false,
+                "response_time_anomaly": false
+            },
+            "severity": "confirmed",
+            "confirmed": true,
+            "notes": "Requires manual verification"
+        },
+        {
+            "test_id": "searchFor",
+            "test_type": "SQL Injection",
+            "payload_type": "Boolean",
+            "status": 200,
+            "target_url": "http://testphp.vulnweb.com?searchFor=\"')123\"123\"",
+            "response_time_ms": 369.564,
+            "response_size_bytes": 4958,
+            "headers": {
+                "Server": "nginx/1.19.0",
+                "Date": "Tue, 18 Nov 2025 15:37:20 GMT",
+                "Content-Type": "text/html; charset=UTF-8",
+                "Transfer-Encoding": "chunked",
+                "Connection": "keep-alive",
+                "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+                "Content-Encoding": "gzip"
+            },
+            "vulnerability_indicators": {
+                "sql_errors": true,
+                "unusual_response_size": false,
+                "response_time_anomaly": false
+            },
+            "severity": "confirmed",
+            "confirmed": true,
+            "notes": "Requires manual verification"
+        },
+        {
+            "test_id": "goButton",
+            "test_type": "SQL Injection",
+            "payload_type": "Boolean",
+            "status": 200,
+            "target_url": "http://testphp.vulnweb.com?goButton=\"')123\"123\"",
+            "response_time_ms": 379.458,
+            "response_size_bytes": 4958,
+            "headers": {
+                "Server": "nginx/1.19.0",
+                "Date": "Tue, 18 Nov 2025 15:37:20 GMT",
+                "Content-Type": "text/html; charset=UTF-8",
+                "Transfer-Encoding": "chunked",
+                "Connection": "keep-alive",
+                "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+                "Content-Encoding": "gzip"
+            },
+            "vulnerability_indicators": {
+                "sql_errors": true,
+                "unusual_response_size": false,
+                "response_time_anomaly": false
+            },
+            "severity": "confirmed",
+            "confirmed": true,
+            "notes": "Requires manual verification"
+        },
+        {
+            "test_id": "searchFor",
+            "test_type": "SQL Injection",
+            "payload_type": "Boolean",
+            "status": 200,
+            "target_url": "http://testphp.vulnweb.com?searchFor=\"[]123\"",
+            "response_time_ms": 369.29,
+            "response_size_bytes": 4958,
+            "headers": {
+                "Server": "nginx/1.19.0",
+                "Date": "Tue, 18 Nov 2025 15:37:20 GMT",
+                "Content-Type": "text/html; charset=UTF-8",
+                "Transfer-Encoding": "chunked",
+                "Connection": "keep-alive",
+                "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+                "Content-Encoding": "gzip"
+            },
+            "vulnerability_indicators": {
+                "sql_errors": true,
+                "unusual_response_size": false,
+                "response_time_anomaly": false
+            },
+            "severity": "confirmed",
+            "confirmed": true,
+            "notes": "Requires manual verification"
+        },
+        {
+            "test_id": "goButton",
+            "test_type": "SQL Injection",
+            "payload_type": "Boolean",
+            "status": 200,
+            "target_url": "http://testphp.vulnweb.com?goButton=\"[]123\"",
+            "response_time_ms": 376.17499999999995,
+            "response_size_bytes": 4958,
+            "headers": {
+                "Server": "nginx/1.19.0",
+                "Date": "Tue, 18 Nov 2025 15:37:21 GMT",
+                "Content-Type": "text/html; charset=UTF-8",
+                "Transfer-Encoding": "chunked",
+                "Connection": "keep-alive",
+                "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+                "Content-Encoding": "gzip"
+            },
+            "vulnerability_indicators": {
+                "sql_errors": true,
+                "unusual_response_size": false,
+                "response_time_anomaly": false
+            },
+            "severity": "confirmed",
+            "confirmed": true,
+            "notes": "Requires manual verification"
+        },
+        {
+            "test_id": "searchFor",
+            "test_type": "SQL Injection",
+            "payload_type": "Boolean",
+            "status": 200,
+            "target_url": "http://testphp.vulnweb.com?searchFor=\"\"\"123\"",
+            "response_time_ms": 384.228,
+            "response_size_bytes": 4958,
+            "headers": {
+                "Server": "nginx/1.19.0",
+                "Date": "Tue, 18 Nov 2025 15:37:21 GMT",
+                "Content-Type": "text/html; charset=UTF-8",
+                "Transfer-Encoding": "chunked",
+                "Connection": "keep-alive",
+                "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+                "Content-Encoding": "gzip"
+            },
+            "vulnerability_indicators": {
+                "sql_errors": true,
+                "unusual_response_size": false,
+                "response_time_anomaly": false
+            },
+            "severity": "confirmed",
+            "confirmed": true,
+            "notes": "Requires manual verification"
+        },
+        {
+            "test_id": "goButton",
+            "test_type": "SQL Injection",
+            "payload_type": "Boolean",
+            "status": 200,
+            "target_url": "http://testphp.vulnweb.com?goButton=\"\"\"123\"",
+            "response_time_ms": 373.404,
+            "response_size_bytes": 4958,
+            "headers": {
+                "Server": "nginx/1.19.0",
+                "Date": "Tue, 18 Nov 2025 15:37:22 GMT",
+                "Content-Type": "text/html; charset=UTF-8",
+                "Transfer-Encoding": "chunked",
+                "Connection": "keep-alive",
+                "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+                "Content-Encoding": "gzip"
+            },
+            "vulnerability_indicators": {
+                "sql_errors": true,
+                "unusual_response_size": false,
+                "response_time_anomaly": false
+            },
+            "severity": "confirmed",
+            "confirmed": true,
+            "notes": "Requires manual verification"
+        },
+        {
+            "test_id": "searchFor",
+            "test_type": "SQL Injection",
+            "payload_type": "Boolean",
+            "status": 200,
+            "target_url": "http://testphp.vulnweb.com?searchFor=\"'\"123\"",
+            "response_time_ms": 375.59,
+            "response_size_bytes": 4958,
+            "headers": {
+                "Server": "nginx/1.19.0",
+                "Date": "Tue, 18 Nov 2025 15:37:22 GMT",
+                "Content-Type": "text/html; charset=UTF-8",
+                "Transfer-Encoding": "chunked",
+                "Connection": "keep-alive",
+                "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+                "Content-Encoding": "gzip"
+            },
+            "vulnerability_indicators": {
+                "sql_errors": true,
+                "unusual_response_size": false,
+                "response_time_anomaly": false
+            },
+            "severity": "confirmed",
+            "confirmed": true,
+            "notes": "Requires manual verification"
+        },
+        {
+            "test_id": "goButton",
+            "test_type": "SQL Injection",
+            "payload_type": "Boolean",
+            "status": 200,
+            "target_url": "http://testphp.vulnweb.com?goButton=\"'\"123\"",
+            "response_time_ms": 388.543,
+            "response_size_bytes": 4958,
+            "headers": {
+                "Server": "nginx/1.19.0",
+                "Date": "Tue, 18 Nov 2025 15:37:22 GMT",
+                "Content-Type": "text/html; charset=UTF-8",
+                "Transfer-Encoding": "chunked",
+                "Connection": "keep-alive",
+                "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+                "Content-Encoding": "gzip"
+            },
+            "vulnerability_indicators": {
+                "sql_errors": true,
+                "unusual_response_size": false,
+                "response_time_anomaly": false
+            },
+            "severity": "confirmed",
+            "confirmed": true,
+            "notes": "Requires manual verification"
+        },
+        {
+            "test_id": "searchFor",
+            "test_type": "SQL Injection",
+            "payload_type": "Boolean",
+            "status": 200,
+            "target_url": "http://testphp.vulnweb.com?searchFor=\"\"'123\"",
+            "response_time_ms": 372.548,
+            "response_size_bytes": 4958,
+            "headers": {
+                "Server": "nginx/1.19.0",
+                "Date": "Tue, 18 Nov 2025 15:37:23 GMT",
+                "Content-Type": "text/html; charset=UTF-8",
+                "Transfer-Encoding": "chunked",
+                "Connection": "keep-alive",
+                "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+                "Content-Encoding": "gzip"
+            },
+            "vulnerability_indicators": {
+                "sql_errors": true,
+                "unusual_response_size": false,
+                "response_time_anomaly": false
+            },
+            "severity": "confirmed",
+            "confirmed": true,
+            "notes": "Requires manual verification"
+        },
+        {
+            "test_id": "goButton",
+            "test_type": "SQL Injection",
+            "payload_type": "Boolean",
+            "status": 200,
+            "target_url": "http://testphp.vulnweb.com?goButton=\"\"'123\"",
+            "response_time_ms": 377.82500000000005,
+            "response_size_bytes": 4958,
+            "headers": {
+                "Server": "nginx/1.19.0",
+                "Date": "Tue, 18 Nov 2025 15:37:23 GMT",
+                "Content-Type": "text/html; charset=UTF-8",
+                "Transfer-Encoding": "chunked",
+                "Connection": "keep-alive",
+                "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+                "Content-Encoding": "gzip"
+            },
+            "vulnerability_indicators": {
+                "sql_errors": true,
+                "unusual_response_size": false,
+                "response_time_anomaly": false
+            },
+            "severity": "confirmed",
+            "confirmed": true,
+            "notes": "Requires manual verification"
+        },
+        {
+            "test_id": "searchFor",
+            "test_type": "SQL Injection",
+            "payload_type": "Boolean",
+            "status": 200,
+            "target_url": "http://testphp.vulnweb.com?searchFor=\"\\123\"",
+            "response_time_ms": 451.07399999999996,
+            "response_size_bytes": 4958,
+            "headers": {
+                "Server": "nginx/1.19.0",
+                "Date": "Tue, 18 Nov 2025 15:37:24 GMT",
+                "Content-Type": "text/html; charset=UTF-8",
+                "Transfer-Encoding": "chunked",
+                "Connection": "keep-alive",
+                "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+                "Content-Encoding": "gzip"
+            },
+            "vulnerability_indicators": {
+                "sql_errors": true,
+                "unusual_response_size": false,
+                "response_time_anomaly": false
+            },
+            "severity": "confirmed",
+            "confirmed": true,
+            "notes": "Requires manual verification"
+        },
+        {
+            "test_id": "goButton",
+            "test_type": "SQL Injection",
+            "payload_type": "Boolean",
+            "status": 200,
+            "target_url": "http://testphp.vulnweb.com?goButton=\"\\123\"",
+            "response_time_ms": 378.905,
+            "response_size_bytes": 4958,
+            "headers": {
+                "Server": "nginx/1.19.0",
+                "Date": "Tue, 18 Nov 2025 15:37:24 GMT",
+                "Content-Type": "text/html; charset=UTF-8",
+                "Transfer-Encoding": "chunked",
+                "Connection": "keep-alive",
+                "X-Powered-By": "PHP/5.6.40-38+ubuntu20.04.1+deb.sury.org+1",
+                "Content-Encoding": "gzip"
+            },
+            "vulnerability_indicators": {
+                "sql_errors": true,
+                "unusual_response_size": false,
+                "response_time_anomaly": false
+            },
+            "severity": "confirmed",
+            "confirmed": true,
+            "notes": "Requires manual verification"
+        }
+    ]
+}

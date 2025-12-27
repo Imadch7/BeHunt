@@ -1,0 +1,10 @@
+{
+    "metadata": {
+        "scan_id": "4623946",
+        "target_domain": "testphp.vulnweb.com",
+        "scan_date": "2025-11-19T09:52:42.958557",
+        "scanner_version": "1.0",
+        "authorization": "Authorized Test"
+    },
+    "all_responses": []
+}

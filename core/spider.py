@@ -71,17 +71,6 @@ class spider:
         with open(out_path, 'w',encoding='utf-8') as f:
             json.dump(serializable_TAGS, f, indent=4)
     
-    '''
-        Extract the ids from the specified tag in the saved json file.
-        {
-        "url":
-            "inputs": [
-                "<input id=\"entreprise_search\" name=\"entreprise_search\" placeholder=\"Chercher ...\" type=\"text\"/>",
-                "<input class=\"checkbox\" id=\"mode\" style=\"height: 1px; width:0px;\" type=\"checkbox\"/>"
-            ]
-        }
-    '''
-    
     def get_tag_payload(self, url, tag='input'):
 
         base = self.Url.base_url(url)

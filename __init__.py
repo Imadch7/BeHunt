@@ -72,5 +72,5 @@ if __name__ == "__main__":
 		sys.exit(1)
 	finally:
 		if args.output:
-			inj.response_out(args.output)
+			inj.response_out(args.output,args.Tuning)
 		print(f"Welcome another Time {getpass.getuser()}")
