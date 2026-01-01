@@ -1,9 +1,11 @@
-# BeHunt 🚀
+# BeHunt
 
-## 📖 Desciption
-BeHunt is an open-source web vulnerability analysis tool written in Python. it performs automated, non-intrusive enumeration and security testing of web applications. Its core functionality includes the automated detection of common weaknesses such as SQL Injection (SQLi) and Cross-Site Scripting (XSS) vulnerabilities. Then injecting payloads when said vulnerabilities are found.
+![BeHunt Logo](img.png)
 
-## ✨ Features
+BeHunt is an open-source web vulnerability analysis tool written in Python. It performs automated, non-intrusive enumeration and security testing of web applications. Its core functionality includes the automated detection of common weaknesses such as SQL Injection (SQLi) and Cross-Site Scripting (XSS) vulnerabilities.
+
+## Features
+
 - 🔍 Automated subdomain enumeration
 - 🛡️ SQL Injection (SQLi) detection
 - 🔐 Cross-Site Scripting (XSS) vulnerability scanning
@@ -11,36 +13,47 @@ BeHunt is an open-source web vulnerability analysis tool written in Python. it p
 - 📊 Multiple output formats (TXT, JSON, HTML)
 - 🎯 Custom payload wordlist support
 
-## 🔧 Installation and setup
+## Installation
 
-### 1️⃣ ⚙️ Clone the repo and navigate to the directory
-```cmd
-git clone https://github.com/Imadch7/BeHunt
-cd behunt
+Clone the repository:
+
+```bash
+git clone https://github.com/Imadch7/BeHunt.git
 ```
 
-### 2️⃣ 🐍 Install Python
-Installing Python can be done from their official website [here](https://www.python.org/downloads/)
-(Python version 3.12+)
+## Getting Started
 
-### 3️⃣ 📦 Install the required libraries
-```cmd
+1. Navigate to the BeHunt directory:
+```bash
+cd ~/BeHunt
+```
+
+2. Install all the requirments:
+```bash
 pip install -r requirements.txt
 ```
 
-### 4️⃣ ▶️ Execute the alias script
-```cmd
+
+3. Execute the setup script:
+```bash
 ./alias.sh
 ```
-
-### 5️⃣ 💽 Verify installation
-```cmd
-Behunt -h
+4. Create an Envirenement:
+```bash
+uv venv
+```
+5. Run the Envirenement:
+```bash
+source .venv/bin/activate
+```
+6. Verify installation:
+```bash
+behunt -h
 ```
 
-##  Getting Started 
-### Usage
-```cmd
+## Usage
+
+```
 usage: Behunt [options]
 
 options:
@@ -61,23 +74,44 @@ options:
                         [3]. XSS (Cross Site Scripting)
 ```
 
-### Examples
-- Basic vulnerability scan
-```cmd
+## Examples
+
+### Basic vulnerability scan
+```bash
 Behunt -u https://example.com
 ```
 
-- Subdomain enumeration
-```cmd
+### Subdomain enumeration
+```bash
 Behunt -u https://example.com -E
 ```
 
-- SQL Injection testing with custom wordlist
-```cmd
+### SQL Injection testing with custom wordlist
+```bash
 Behunt -u https://example.com -T 2 -w /path/to/wordlist.txt
 ```
 
-- XSS scan with JSON output
-```cmd
-Behunt -u https://example.com -T 3 -O json
+### XSS scan with JSON output
+```bash
+Behunt -u https://example.com -T 3 -w /path/to/wordlist.txt -O json
 ```
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+This project is open-source and available under the MIT License.
+
+## Disclaimer
+
+⚠️ **Important**: This tool is intended for educational purposes and authorized security testing only. Always obtain proper authorization before testing any web application. Unauthorized access to computer systems is illegal.
+
+## Author
+
+Created by [Imadch7](https://github.com/Imadch7)
+
+## Repository
+
+[https://github.com/Imadch7/BeHunt](https://github.com/Imadch7/BeHunt)
