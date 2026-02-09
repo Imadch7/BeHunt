@@ -1,19 +1,38 @@
 import json
 import requests
 from datetime import datetime
-from core import url
 
 class OWASP:
     def __init__(self):
         self.paths_list = ["/admin", "/config", "/.env", "/backup", "/.git", "/api", "/app"]
-        self.headers = {
-            "Content-Type": "application/json",
-            "Accept": "application.json"
-        }
-        self.url = url.URL()
+        self.vulnerability_headers = ["Server", "X-Powered-By", "X-Debug-Token", "X-Runtime", "Access-Control-Allow-Origin"]
+        self.armor_headers = ["X-Frame-Options", "Content-Security-Policy", "Strict-Transport-Security", "X-Content-Type-Options"]
         self.insecure_paths = dict()
 
-    def build_insecure_paths(self, code, method):
+    def get_vulnerability_refrence(self, num):
+        match num:
+            case 1:
+                return "A01:2021 Broken Access Control"
+            case 2:
+                return "A02:2021 Cryptographic Failures"
+            case 3:
+                return "A03:2021 Injection"
+            case 4:
+                return "A04:2021 Insecure Design"
+            case 5:
+                return "A05:2021 Security Misconfiguration"
+            case 6:
+                return "A06:2021 Vulnerable and Outdated Components"
+            case 7:
+                return "A07:2021 Identification and Authentication Failures"
+            case 8:
+                return "A08:2021 Software and Data Integrity Failures"
+            case 9:
+                return "A09:2021 Security Logging and Monitoring Failures"
+            case 10:
+                return "A10:2021 Server Side Request Forgery"
+
+    def build_insecure_paths(self, code, method, headers):
         if code == 404:
             return None
         
@@ -29,15 +48,13 @@ class OWASP:
         return {
             "Status": status,
             "Method": method,
-            "Headers": self.headers,
+            "Headers": headers,
             "Status Code": code,
             "Time": datetime.now().isoformat(),
-            "Vulnrability Refrence": ["A01:2021 Broken Access Control"]
+            "Vulnerability Refrence": []
         }
     
-
-    # A01:2021 Broken Access Control
-    def broken_access_control(self, url):
+    def make_http_request(self, url):
         self.insecure_paths["URL"] = url
 
         with requests.Session() as session:
@@ -56,12 +73,22 @@ class OWASP:
 
                 for response, method in responses:
                     if response.status_code != 404:
-                        arr.append(self.build_insecure_paths(response.status_code, method))
+                        arr.append(self.build_insecure_paths(response.status_code, method, response.headers))
 
                 if arr:
                     self.insecure_paths[path] = arr
+    
 
-        with open("insecure_paths.json", "w") as file:
+    # A01:2021 Broken Access Control
+    def broken_access_control(self):
+        for path, responses in self.insecure_paths.items():
+            if path == "URL":
+                continue
+
+            for response in responses:
+                response["Vulnerability Refrence"].append(self.get_vulnerability_refrence(1))
+
+        with open("a01.json", "w") as file:
             json.dump(self.insecure_paths, file, indent=4)
 
     
@@ -78,12 +105,28 @@ class OWASP:
         pass
 
     # A05:2021 Security Misconfiguration
-    def sm(self):
-        for path, res in self.insecure_paths.items():
+    def security_misconfiguration(self):
+        for path, responses in self.insecure_paths.items():
             if path == "URL":
                 continue
 
-            
+            for response in responses:
+                added = False
+                for armor in self.armor_headers:
+                    if armor not in response.headers:
+                        if not added:
+                            response["Vulnerability Refrence"].append(self.get_vulnerability_refrence(5))
+                            added = True
+
+                for vul in self.vulnerability_headers:
+                    if vul in response.headers:
+                        if not added:
+                            response["Vulnerability Refrence"].append(self.get_vulnerability_refrence(5))
+                            added = True
+
+
+        with open("a05.json", "w") as file:
+            json.dump(self.insecure_paths, file, indent=4)
 
     # A06:2021 Vulnerable and Outdated Components
     def vulnerable_and_outdated_components(self):
@@ -98,9 +141,9 @@ class OWASP:
         pass
 
     # A09:2021 Security Logging and Monitoring Failures
-    def Security_logging_and_monitoring_failures(self):
+    def security_logging_and_monitoring_failures(self):
         pass
 
-    # A10:2021 Server Side Request Forgery (SSRF)
+    # A10:2021 Server Side Request Forgery
     def server_side_request_forgery(self):
         pass
