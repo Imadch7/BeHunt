@@ -28,24 +28,26 @@ git clone https://github.com/Imadch7/BeHunt.git
 cd ~/BeHunt
 ```
 
-2. Install all the requirments:
+2. Create an Environnement:
+```bash
+uv venv
+```
+3. Run the Environnement:
+```bash
+source .venv/bin/activate
+```
+
+4. Install all the requirments:
 ```bash
 pip install -r requirements.txt
 ```
 
 
-3. Execute the setup script:
+5. Execute the setup script:
 ```bash
 ./alias.sh
 ```
-4. Create an Envirenement:
-```bash
-uv venv
-```
-5. Run the Envirenement:
-```bash
-source .venv/bin/activate
-```
+
 6. Verify installation:
 ```bash
 behunt -h
