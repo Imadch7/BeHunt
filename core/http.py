@@ -1,5 +1,4 @@
 import requests
-import file
 
 class HTTPRequestHandler:
     
@@ -50,9 +49,9 @@ class HTTPRequestHandler:
             print(f"HEAD request failed: {e}")
             return None
     
-    def multiple_subdomain_requests(self, base_url, file, method="GET", headers=None):
+    def multiple_subdomain_requests(self, base_url,wordlist, method="GET", headers=None,_404=True):
         try:
-            with open(file, 'r') as fs:
+            with open(wordlist, 'r') as fs:
                 subdomains = fs.readlines()
                 responses = {}
                 for subdomain in subdomains:
@@ -73,12 +72,19 @@ class HTTPRequestHandler:
                         exit(1)
                     
                     if response:
-                        responses[full_url] = response
+                        if _404:
+                            responses[full_url] = response
+                        elif response.status_code != 404:
+                            responses[full_url] = response
                 
                 return responses
         except FileNotFoundError:
-            print(f"File not found: {file}")
+            print(f"File not found: {wordlist}")
             return None
         except Exception as e:
             print(f"An error occurred: {e}")
             return None
+        finally:
+            if 'fs' in locals():
+                fs.close()
+
